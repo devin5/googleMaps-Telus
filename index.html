@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="icon" type="image/favicon" href="./assets/favicon.ico" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Telus</title>
+    <style>
+      #map {
+        height: 100%;
+      }
+      html,
+      body {
+        height: 100%;
+        margin: 3%;
+        margin-top: 50px;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>
+      defaults to veiw of guatamala. All purple Icons or Telus Locations :)
+    </h1>
+    <div id="map"></div>
+    <script>
+      function initMap() {
+        //creates Icon
+        icon = {
+          url: "./assets/favicon.ico",
+          scaledSize: new google.maps.Size(20, 20)
+        };
+
+        // Config OPtions
+        options = {
+          center: { lat: 14.630196, lng: -90.499429 },
+
+          zoom: 12
+        };
+        //creates and injects map
+        var map = new google.maps.Map(document.getElementById("map"), options);
+
+        //FUNCTION for createing markers
+        function addMarker(props) {
+          var marker = new google.maps.Marker({
+            position: props.coords,
+            map: map,
+            animation: google.maps.Animation.BOUNCE,
+            icon: icon
+          });
+          var infoWindow = new google.maps.InfoWindow({
+            content: props.content
+          });
+          marker.addListener("click", function() {
+            infoWindow.open(map, marker);
+          });
+        }
+        // array of markers
+        const arr = [
+          //us
+          {
+            coords: { lat: 36.148132, lng: -115.210495 },
+            content:
+              "<h1>TELUS International (U.S.) Corp</h1><h3>Las Vegas</h3><p>2251 South Decatur BoulevardLas Vegas, Nevada USA 89102</p>"
+          },
+          {
+            coords: { lat: 38.6586, lng: -121.182765 },
+            content:
+              "<h1>TELUS International</h1><h3>Folsom</h3><p>255 Parkshore Drive Folsom, California USA 95630</p>"
+          },
+          {
+            coords: { lat: 45.5, lng: -73.5689 },
+            content:
+              "<h1>TELUS </h1><h3>Montral</h3><p>1155 rue Metcalfe Montréal, Quebec Canada H3B 2V6</p>"
+          },
+          //el salvador
+          {
+            coords: { lat: 13.679, lng: -89.27 },
+            content:
+              "<h1>TELUS Plaza Merliot</h1><h3>La Libertad</h3><p>Calle Chiltiupan y 17 Avenida Norte, Torre Transactel, Plaza Merliot,Santa Tecla, La Libertad, El Salvador</p>"
+          },
+          {
+            coords: { lat: 13.6777, lng: -89.249 },
+            content:
+              "<h1>TELUS Las Cascadas</h1><h3>La Libertad</h3><p>Calle El Pedregal y Avenida Sergio Paiz, Centro Comercial Las Cascadas, Antiguo Cuscatlan, La Libertad, El Salvador</p>"
+          },
+          //guatamala City
+          {
+            coords: { lat: 14.580504, lng: -90.494954 },
+            content:
+              "<h1>TELUS Torre Pradera</h1><h3>Guatemala City</h3><p>18 Calle 25-86 Zona 10 Torre Pradera, Pan-American Highway Guatemala Cityr</p>"
+          },
+          {
+            coords: { lat: 14.632069, lng: -90.512613 },
+            content:
+              "<h1>TELUS Pradera West,</h1><h3>Guatemala City</h3><p>20 Calle 25-05 Zona 10 Edificio Pradera West, Guatemala CityGuatemala 01010</p>"
+          },
+          {
+            coords: { lat: 14.601945, lng: -90.513175 },
+            content:
+              "<h1>TELUS Interamericas WFC,</h1><h3>Guatemala City</h3><p>6TA Avenida y 11 Calle 3-10 Zona 10 Guatemala City GT-GU, 1010, Guatemala</p>"
+          },
+          {
+            coords: { lat: 14.560994, lng: -90.563285 },
+            content:
+              "<h1>TELUS Pradera Xela,</h1><h3>Quetzaltenango</h3><p>Avenida Las Americas 7-62 Zona 3 Torre Pradera-Xela Quetzaltenango, Guatemala</p>"
+          }
+        ];
+
+        // loop through marker array to create marker
+        arr.forEach(x => {
+          addMarker(x);
+        });
+
+        //creates marker
+        // addMarker({
+        //   coords: { lat: -34.397, lng: 150.644 },
+        //   content: "<h1>telus</h1>"
+        // });
+
+        //static for one location
+        // var marker = new google.maps.Marker({
+        //   position: { lat: -34.397, lng: 150.644 },
+        //   map: map,
+        //   animation: google.maps.Animation.BOUNCE,
+        //   icon: icon
+        // });
+
+        // var infoWindow = new google.maps.InfoWindow({
+        //   content: "<h1>telus</h1>"
+        // });
+
+        // marker.addListener("click", function() {
+        //   infoWindow.open(map, marker);
+        // });
+      }
+    </script>
+
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqLlUOBpRgYeKTI7d3F6MI-MB1hylmxEs&callback=initMap"
+      async
+      defer
+    ></script>
+  </body>
+</html>
